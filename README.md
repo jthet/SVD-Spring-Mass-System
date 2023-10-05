@@ -4,7 +4,7 @@ This repository contains two python scripts; one to preform singular value decom
 # How to Install and Run the Project
 To clone this repository:
 ```
-$ git clone https://github.com/jthet/SVD-Spring-Mass-System
+$ git clone https://github.com/jthet/SVD-Spring-Mass-System.git
 ```
 
 To run the scripts (detailed below):
