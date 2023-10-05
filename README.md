@@ -1,6 +1,21 @@
 # SVD Spring Mass System
 This repository contains two python scripts; one to preform singular value decomposition (SVD) on a matrix and the other to solve relevant equations of a spring-mass system. 
 
+# How to Install and Run the Project
+To clone this repository:
+```
+$ git clone https://github.com/jthet/SVD-Spring-Mass-System
+```
+
+To run the scripts(detailed below):
+```
+$ python3 svd.py
+OR
+$ python3 spring-mass.py
+```
+The terminal will then prompt you for user input.
+
+
 ## Scripts
 ### `svd.py`
 This script prefors SVD on a given matrix. Solving, A = U &Sigma; V<sup>T</sup> 
