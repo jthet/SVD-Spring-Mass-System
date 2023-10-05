@@ -5,7 +5,15 @@ from math import sqrt
 
 def input_matrix():
     '''
-    Asks user for data, returns a np matrix
+    Retrieve matrix details from user input.
+
+    This function prompts the user to input the number of rows and columns 
+    and each element of the matrix sequentially. It enforces input validity 
+    checks to ensure all inputs are integers and floats for the dimensions 
+    and elements, respectively.
+
+    Returns:
+        A (np.array): The user-defined matrix.
     '''
     global rows
     global cols
@@ -38,6 +46,25 @@ def input_matrix():
     return np.array(matrix)
 
 def svd(A: np.array) -> tuple:
+    '''
+    Perform Singular Value Decomposition on matrix A.
+
+    This function decomposes matrix A into its singular value components
+    U, Sigma, and V using eigenvalue decomposition and square root operation.
+
+    Parameters:
+        A : np.array
+            The input matrix to decompose.
+
+    Returns:
+        tuple (U, Sigma, V)
+            U : np.array
+                Left singular vector matrix.
+            Sigma : np.array
+                Diagonal matrix containing singular values.
+            V : np.array
+                Right singular vector matrix.
+    '''
     rows = A.shape[0]
     cols = A.shape[1]
     # Getting eigenvalues and eigenvectors
@@ -68,7 +95,17 @@ def svd(A: np.array) -> tuple:
 
 def get_condition(A: np.array):
     '''
-    Finds condition number of matrix using spectral norm
+    Compute the condition number of matrix A using its singular values.
+
+    This function calculates the condition number of A by obtaining the 
+    singular values through eigenvalue decomposition and returns their ratio 
+    (max/min).
+
+    Parameters:
+        A (np.array): Input matrix for which to calculate the condition number.
+
+    Returns:
+        cond_num (float): Condition number of matrix A.
     '''
     eigVal_U, _ = np.linalg.eig(A@A.T)
     sigma = np.sqrt(eigVal_U)
@@ -76,6 +113,21 @@ def get_condition(A: np.array):
     return (max(sigma)/min(sigma))
 
 def get_Ainv(A):
+    '''
+    Calculate the inverse of matrix A, if it exists.
+
+    Utilizing the SVD (U, Sigma, V) of matrix A, this function computes the
+    inverse of A, raising an exception if A is singular (non-invertible).
+
+    Parameters:
+        A (np.array): The matrix to invert.
+
+    Returns:
+        A_inv (np.array): Inverse of matrix A.
+
+    Raises:
+        Exception: If A is singular (non-invertible).
+    '''
     U, Sigma, V = svd(A)
 
     rows = A.shape[0]
@@ -91,6 +143,20 @@ def get_Ainv(A):
         return V @ sigma_inv @ U.T
     
 def pretty_matrix(A: np.array, name: str):
+    '''
+    Display a matrix or vector with a friendly format.
+
+    This function takes a matrix or vector A and its name as inputs and 
+    prints them to the console in a neat and readable format. The display 
+    suppresses scientific notation and utilizes a precision of 5 decimal 
+    places.
+
+    Parameters:
+        A (np.array): Matrix or vector to display.
+        name (str): Descriptive name to print above the displayed matrix/vector.
+    Returns:
+        None
+    '''
     np.set_printoptions(suppress=True, precision=5)
     if (np.ndim(A) == 1):
         print('-'*40, f'\n{name} Vector:\n')
