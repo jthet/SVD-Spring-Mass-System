@@ -7,7 +7,7 @@ To clone this repository:
 $ git clone https://github.com/jthet/SVD-Spring-Mass-System
 ```
 
-To run the scripts(detailed below):
+To run the scripts (detailed below):
 ```
 $ python3 svd.py
 OR
