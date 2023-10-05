@@ -291,16 +291,3 @@ Condition Number: 16.39373
 
 
 Created by Jackson Thetford 10/5/2023
-
-
-
-
-
-
-
-
-
-
-
-
-
