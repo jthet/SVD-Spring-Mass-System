@@ -13,7 +13,7 @@ $ python3 svd.py
 OR
 $ python3 spring-mass.py
 ```
-The terminal will then prompt you for user input.
+The terminal will then prompt you for input.
 
 
 ## Scripts
