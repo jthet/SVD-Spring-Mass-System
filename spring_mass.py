@@ -169,7 +169,7 @@ def get_F(masses):
     Returns:
         F (np.ndarray): Force vector.
     """
-    g = 9.81  # gravity in m/s^2
+    g = -9.81  # gravity in m/s^2
     F = np.array(masses) * g
     return F
 
@@ -275,16 +275,16 @@ def main():
     A, C, K, F, disp, elong, inStress = solve_system(num_springs, num_masses, spring_constants, masses, bc)
 
     # # # Printing out Solutions
-    # print(mysvd.pretty_matrix(A, "A"))
-    # print(mysvd.pretty_matrix(C, "C"))
-    # print(mysvd.pretty_matrix(K, "K"))
-    # print(mysvd.pretty_matrix(F, "F"))
+    mysvd.pretty_matrix(A, "A")
+    mysvd.pretty_matrix(C, "C")
+    mysvd.pretty_matrix(K, "K")
+    mysvd.pretty_matrix(F, "F")
     mysvd.pretty_matrix(disp, "Equilibrium Displacement")
     mysvd.pretty_matrix(inStress, "Internal Stress")
     mysvd.pretty_matrix(elong, "Elongation")
 
     cond_num = mysvd.get_condition(K) # This is the function I made
-    print('-'*40, f'\nCondition Number: ', ('%.5f' % cond_num), '\n', '-'*40)
+    print('-'*40, f'\nCondition Number:', ('%.5f' % cond_num), '\n', '-'*40)
 
 if __name__ == "__main__":
     main()

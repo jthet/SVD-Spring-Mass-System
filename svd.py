@@ -109,10 +109,10 @@ def get_condition(A: np.array):
     '''
     eigVal_U, _ = np.linalg.eig(A@A.T)
     sigma = np.sqrt(eigVal_U)
-    
+
     return (max(sigma)/min(sigma))
 
-def get_Ainv(A):
+def get_Ainv(A: np.array):
     '''
     Calculate the inverse of matrix A, if it exists.
 
@@ -133,14 +133,20 @@ def get_Ainv(A):
     rows = A.shape[0]
     cols = A.shape[1]
 
+    for i in range(min(cols, rows)):
+        if Sigma[i][i] == 0:
+            raise Exception(
+                'Error: Input matrix is singular and cannot be inverted')
+            
+
     if (np.diag(Sigma)).any() == 0:
         raise Exception('Error: Input matrix is singular and cannot be inverted') 
     else:
         sigma_inv = np.zeros((cols, rows))
         for i in range(min(cols, rows)):
-            sigma_inv[i][i] = 1/Sigma[i][i]
+                sigma_inv[i][i] = 1/Sigma[i][i]
 
-        return V @ sigma_inv @ U.T
+    return V @ sigma_inv @ U.T
     
 def pretty_matrix(A: np.array, name: str):
     '''
@@ -166,8 +172,9 @@ def pretty_matrix(A: np.array, name: str):
     print(f'{A}\n')
 
 def main():
-    # A = input_matrix()
-    A = [[3, 2, 2], [2, 3, -2]]
+    A = input_matrix()
+    # A = [[1, 0], [1, 0]]  # Invertible Matrix
+    # A = [[3, 2, 2], [2, 3, -2]]
     A = np.array(A)
 
     U, Sigma, V = svd(A)
